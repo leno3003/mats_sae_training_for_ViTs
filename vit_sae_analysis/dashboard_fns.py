@@ -211,7 +211,7 @@ def get_feature_data(
         image_key = 'image'
         
     dataset = dataset.shuffle(seed = seed)
-    directory = "dashboard"
+    directory = "/scratch/sae_on_vit/dashboard"
     
     if load_pretrained:
         max_activating_image_indices = torch.load(f'{directory}/max_activating_image_indices.pt')

@@ -227,7 +227,7 @@ class ViTSAERunnerConfig():
         
         # Autofill cached_activations_path unless the user overrode it
         if self.cached_activations_path is None:
-            self.cached_activations_path = f"activations/{self.dataset_path.replace('/', '_')}/{self.model_name.replace('/', '_')}/{self.block_layer}_{self.module_name}"
+            self.cached_activations_path = f"/scratch/sae_on_vit/activations/{self.dataset_path.replace('/', '_')}/{self.model_name.replace('/', '_')}/{self.block_layer}_{self.module_name}"
 
         self.d_sae = self.d_in * self.expansion_factor
 

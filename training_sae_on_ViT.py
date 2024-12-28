@@ -40,16 +40,16 @@ cfg = ViTSAERunnerConfig(
     class_token = True,
     image_width = 224,
     image_height = 224,
-    model_name = "openai/clip-vit-large-patch14",
+    model_name = "openai/clip-vit-base-patch32", # "openai/clip-vit-large-patch14",
     module_name = "resid",
     block_layer = -2,
     dataset_path = "evanarlian/imagenet_1k_resized_256",
     use_cached_activations = False,
     cached_activations_path = None,
-    d_in = 1024,
+    d_in = 768, # 1024,
     
     # SAE Parameters
-    expansion_factor = 64,
+    expansion_factor = 8, # 64,
     b_dec_init_method = "mean",
     
     # Training Parameters
@@ -69,23 +69,25 @@ cfg = ViTSAERunnerConfig(
     dead_feature_threshold = 1e-6,
     
     # WANDB
-    log_to_wandb = True,
-    wandb_project= "mats-hugo",
-    wandb_entity = None,
+    log_to_wandb = False, # True,
+    wandb_project= "SAE_on_ViT-B32_clip", # "SAE_on_ViT-L_clip",
+    wandb_entity = "test_1",
     wandb_log_frequency=20,
     
     # Misc
     device = "cuda",
     seed = 42,
     n_checkpoints = 0,
-    checkpoint_path = "checkpoints",
+    checkpoint_path = "/scratch/sae_on_vit/checkpoints",
     dtype = torch.float32,
     )
 
 torch.cuda.empty_cache()
 sparse_autoencoder, model = vision_transformer_sae_runner(cfg)
 sparse_autoencoder.eval()
+feature_idx = list(range(10))
 
+# feature_data = 
 
 get_feature_data(
     sparse_autoencoder,
@@ -93,5 +95,10 @@ get_feature_data(
     number_of_images = 524_288,
     number_of_max_activating_images = 20,
 )
+
+# for test_idx in feature_idx:
+#     html_str = feature_data[test_idx].get_all_html()
+#     with open(f"/scratch/sae_on_vit/data_{test_idx:04}.html", "w") as f:
+#         f.write(html_str)
 
 print("*****Done*****")

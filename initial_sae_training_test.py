@@ -70,7 +70,7 @@ cfg = LanguageModelSAERunnerConfig(
     
     # WANDB
     log_to_wandb = True,
-    wandb_project= "mats-hugo",
+    wandb_project= "mats-hugo", # "mechanistic_interpretability_saes", 
     wandb_entity = None,
     wandb_log_frequency=100,
     

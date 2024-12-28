@@ -21,7 +21,9 @@ def vision_transformer_sae_runner(cfg):
         model, sparse_autoencoder, activations_loader = loader.load_session()
 
     if cfg.log_to_wandb:
-        wandb.init(project=cfg.wandb_project, config=cfg, name=cfg.run_name)
+        # wandb.init(project=cfg.wandb_project, config=cfg, name=cfg.run_name)
+        # wandb.init(project=cfg.wandb_project, name=cfg.run_name)
+        wandb.init()
     
     # train SAE
     sparse_autoencoder = train_sae_on_vision_transformer(
